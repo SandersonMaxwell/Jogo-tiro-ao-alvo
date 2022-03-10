@@ -16,27 +16,35 @@
         pincel.beginPath();
         pincel.arc(x, y, raio, 0, 2 * Math.PI);
         pincel.fill();
+
+   }
+
+    function limpaTela() {
+    pincel.clearRect(0, 0, 600, 400);
+
     }
 
-    desenhaCirculo(300,200, raio + 20, 'red');
-    desenhaCirculo(300,200, raio + 10, 'white');
-    desenhaCirculo(300,200, raio, 'red');
+    function desenhaAlvo(x, y) {
 
-    function dispara(evento) {
+    desenhaCirculo(x, y, raio+20, 'red');
+    desenhaCirculo(x, y, raio+10, 'white');
+    desenhaCirculo(x, y, raio, 'red');
 
-        var x = evento.pageX - tela.offsetLeft;
-        var y = evento.pageY - tela.offsetTop;
-
-
-        if ((x > 300 - raio) 
-            && (x < 300 + raio)
-                && (y > 200 - raio) 
-                    && (y < 200 + raio)) {
-
-            alert('Acertou');
-        }
     }
 
-    tela.onclick = dispara;
+    function sorteiaPosicao(maximo) {
+
+        return Math.floor(Math.random() * maximo);
+
+    }
+
+    function atualizaTela() {
+    limpaTela();
+    var xAleatorio = sorteiaPosicao(600);
+    var yAleatorio = sorteiaPosicao(400);
+    desenhaAlvo(xAleatorio, yAleatorio);
+    }
+
+    setInterval(atualizaTela, 1000);
 
 </script>
